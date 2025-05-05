@@ -12,6 +12,8 @@ This project demonstrates how to build a synthetic fraud detection system using 
 * Address class imbalance (only 2.5% fraud) using **SMOTE**.
 * Benchmark models using **LazyPredict**.
 * Finalize and evaluate the model using **XGBoost (XGBClassifier)**.
+* Final model training using XGBoost.
+* Deployment of a fraud prediction web app using Streamlit.
 
 ---
 
@@ -25,11 +27,12 @@ This project demonstrates how to build a synthetic fraud detection system using 
 * lazypredict
 * imbalanced-learn
 * xgboost
+* streamlit, joblib
 
 Install all dependencies using:
 
 ```bash
-pip install pandas numpy scikit-learn faker matplotlib seaborn lazypredict imbalanced-learn xgboost
+pip install pandas numpy scikit-learn faker matplotlib seaborn lazypredict imbalanced-learn xgboost streamlit joblib
 ```
 
 ---
@@ -116,17 +119,45 @@ joblib.dump(scaler, 'scaler.pkl')
 
 ---
 
+## 🌐 Deployment with Streamlit
+
+---
+* Clean UI for inputting transaction details
+
+* Categorical and numerical feature support
+
+* Shows prediction with confidence score
+
+---
+
+ **Sample UI Inputs**
+
+ ---
+
+| Feature              | Type        | Description                     |
+| -------------------- | ----------- | ------------------------------- |
+| amount               | Numeric     | Transaction amount              |
+| transactionType      | Categorical | PAYMENT, TRANSFER, etc.         |
+| deviceType           | Categorical | MOBILE, DESKTOP                 |
+| region               | Numeric     | Region code (e.g., 1–10)        |
+| hour, dayofweek      | Numeric     | Time-related transaction info   |
+| isForeignTransaction | Binary      | 1 if international, else 0      |
+| isHighRiskCountry    | Binary      | 1 if risky destination, else 0  |
+| hasSecureAuth        | Binary      | 1 if secure authentication used |
+
+---
+
 ## 📁 Repository Structure
 
 ```
 fraud_detection_project/
-├── fraud_detection.ipynb      # Full code in notebook format
-├── fraud_model.pkl            # Saved ML model
-├── scaler.pkl                 # Saved scaler
-└── README.md                  # Project documentation
-```
+├── fraud_detection.ipynb    # Notebook for full analysis
+├── app.py                   # Streamlit app for deployment
+├── fraud_model.pkl          # Trained XGBoost model
+├── scaler.pkl               # StandardScaler object
+└── README.md                # Project documentation
 
----
+```
 
 ## 🧠 Author & License
 
